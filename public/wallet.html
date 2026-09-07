@@ -145,9 +145,12 @@
   .icon-btn{background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-md);cursor:pointer;padding:8px 10px;display:flex;align-items:center;color:var(--text-muted);font-size:12px;font-weight:700;transition:transform .12s,box-shadow .12s;box-shadow:3px 3px 0 var(--ink);}
   .icon-btn:hover,.icon-btn:active{transform:translate(1.5px,1.5px);box-shadow:1.5px 1.5px 0 var(--ink);}
   .icon-btn img{width:20px;height:20px;opacity:.75;}
-  .ring-wrap{position:relative;display:flex;flex-direction:column;align-items:center;margin:6px 0 8px;background:var(--bg-surface);border:var(--border-w) solid var(--ink);border-radius:var(--radius-xl);box-shadow:var(--shadow-hard-lg);padding:28px 20px;}
-  .ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
-  .ring-balance{font-family:'Nunito';font-weight:900;font-size:44px;letter-spacing:-0.02em;line-height:1;background:linear-gradient(135deg, var(--moss) 0%, var(--gold-dim) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .wallet-hero-card{position:relative;display:flex;flex-direction:column;align-items:center;margin:6px 0 8px;background:var(--bg-surface);border:var(--border-w) solid var(--ink);border-radius:var(--radius-xl);box-shadow:var(--shadow-hard-lg);padding:24px;}
+  .whc-header{display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:16px;}
+  .whc-title{font-family:'Fredoka';font-weight:600;font-size:19px;color:var(--text-primary);}
+  .whc-balance-block{background:var(--moss);border-radius:var(--radius-md);padding:18px 20px;width:100%;}
+  .whc-balance-label{font-family:'Nunito';font-weight:800;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.78);margin-bottom:6px;}
+  .whc-balance-value{font-family:'Nunito';font-weight:900;font-size:38px;letter-spacing:-0.01em;line-height:1;color:#fff;}
   .ring-label{font-family:'IBM Plex Mono';font-size:11px;color:var(--text-muted);letter-spacing:0.06em;margin-top:4px;}
   .ring-addr-row{display:inline-flex;align-items:center;gap:6px;margin-top:14px;cursor:pointer;padding:5px 10px;border-radius:20px;transition:background .15s;}
   .ring-addr-row:hover{background:var(--bg-surface-2);}
@@ -447,15 +450,16 @@
           <button class="icon-btn" onclick="openQrScan()"><img src="/scan-logo.png" alt="Scan" /></button>
         </div>
 
-        <div class="ring-wrap">
-          <svg width="220" height="220" viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="80" fill="none" stroke="var(--bg-surface-2)" stroke-width="10"/>
-            <circle cx="100" cy="100" r="80" fill="none" stroke="var(--gold-dim)" stroke-width="10" stroke-linecap="round" stroke-dasharray="502.4 502.4" transform="rotate(-90 100 100)"/>
-          </svg>
-          <div class="ring-center">
-            <div class="ring-balance" id="balance">—</div>
-            <div class="ring-label">wTUC TOKENS</div>
+        <div class="wallet-hero-card">
+          <div class="whc-header">
+            <div class="whc-title">My TUC Wallet</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M17.5 12h.01"/><path d="M2 10h20"/></svg>
           </div>
+          <div class="whc-balance-block">
+            <div class="whc-balance-label">Your balance</div>
+            <div class="whc-balance-value" id="balance">—</div>
+          </div>
+          <div class="ring-label" style="margin-top:10px;">wTUC TOKENS</div>
         </div>
         <div style="display:flex;justify-content:center;">
           <div class="ring-addr-row" id="wallet-addr-row" onclick="copyAddressInline()">
