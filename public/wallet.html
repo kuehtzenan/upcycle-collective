@@ -7,32 +7,39 @@
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.98.0/lib/index.iife.min.js"></script>
 <script src="/privy-login.js" defer></script>
 <style>
   :root{
-    --bg-base:#111f13; --bg-page:#0c1a0e; --bg-surface:#172319; --bg-surface-2:#1c2c1f;
-    --gold:#a3e635; --gold-dim:#6b8f24; --gold-15:rgba(163,230,53,0.15); --gold-25:rgba(163,230,53,0.25);
-    --moss:#22c55e; --moss-dim:#166534; --moss-15:rgba(34,197,94,0.15); --moss-25:rgba(34,197,94,0.25);
-    --rust:#E5586E; --rust-15:rgba(229,88,110,0.15);
-    --text-primary:#f0ebe0; --text-muted:rgba(240,235,224,0.56); --text-faint:rgba(240,235,224,0.32); --divider:rgba(255,255,255,0.08);
+    --bg-base:#FFFDF4; --bg-page:#FFFDF4; --bg-surface:#FFFFFF; --bg-surface-2:#DDF6C8;
+    --gold:#FAD85D; --gold-dim:#E3B93E; --gold-15:rgba(250,216,93,0.18); --gold-25:rgba(250,216,93,0.32);
+    --moss:#2E7D32; --moss-dim:#1F5B24; --moss-15:rgba(46,125,50,0.14); --moss-25:rgba(46,125,50,0.28);
+    --rust:#E5586E; --rust-15:rgba(229,88,110,0.14); --rust-25:rgba(229,88,110,0.28);
+    --text-primary:#163B24; --text-muted:rgba(22,59,36,0.62); --text-faint:rgba(22,59,36,0.38); --divider:rgba(22,59,36,0.14);
+
+    --ink:#163B24;
+    --border-w-thin:2px; --border-w:3px;
+    --radius-sm:12px; --radius-md:16px; --radius-lg:22px; --radius-xl:28px; --radius-pill:100px;
+    --shadow-hard:6px 6px 0 var(--ink);
+    --shadow-hard-lg:8px 8px 0 var(--ink);
+    --shadow-press:2px 2px 0 var(--ink);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{overflow-x:hidden;}
-  body{background:var(--bg-page);color:var(--text-primary);font-family:'Inter',-apple-system,sans-serif;min-height:100vh;overflow-x:hidden;}
+  body{background:var(--bg-page);color:var(--text-primary);font-family:'Nunito',-apple-system,sans-serif;font-weight:700;min-height:100vh;overflow-x:hidden;}
 
-  h1.page-title{font-family:'Inter',-apple-system,sans-serif;font-weight:800;font-size:26px;color:var(--text-primary);letter-spacing:-0.03em;margin-bottom:7px;}
+  h1.page-title{font-family:'Fredoka',-apple-system,sans-serif;font-weight:600;font-size:26px;color:var(--text-primary);letter-spacing:-0.02em;margin-bottom:7px;}
   .eyebrow-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
-  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--moss);}
   .preview-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-faint);border:1px solid var(--divider);border-radius:999px;padding:2px 8px;}
-  .preview-tag.live{color:var(--gold);border-color:var(--gold-25);}
+  .preview-tag.live{color:var(--gold-dim);border-color:var(--gold-25);}
   .mode-toggle{display:flex;align-items:center;gap:6px;background:var(--bg-surface);border:1px solid var(--divider);border-radius:999px;padding:4px 10px 4px 8px;cursor:pointer;font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-faint);transition:border-color .15s,color .15s;}
   .mode-toggle:hover{border-color:var(--moss-dim);}
   .mode-toggle .mode-toggle-dot{width:6px;height:6px;border-radius:50%;background:var(--text-faint);transition:background .15s,box-shadow .15s;}
-  .mode-toggle.live{color:var(--gold);border-color:var(--gold-25);}
-  .mode-toggle.live .mode-toggle-dot{background:var(--gold);box-shadow:0 0 0 3px var(--gold-15);}
+  .mode-toggle.live{color:var(--gold-dim);border-color:var(--gold-25);}
+  .mode-toggle.live .mode-toggle-dot{background:var(--gold-dim);box-shadow:0 0 0 3px var(--gold-15);}
   .subtext{color:var(--text-muted);font-size:13.5px;line-height:1.5;margin-bottom:20px;}
   .section-title,.section-label{font-size:12px;font-family:'IBM Plex Mono';letter-spacing:0.06em;text-transform:uppercase;color:var(--text-faint);margin:20px 0 10px;}
   .empty{text-align:center;padding:36px 0;color:var(--text-faint);font-size:13.5px;}
@@ -41,14 +48,14 @@
 
   /* ── Login gate ── */
   #login-gate{display:flex;flex-direction:column;align-items:center;text-align:center;min-height:100vh;justify-content:center;padding:60px 24px;gap:16px;}
-  #login-gate h2{font-family:'Inter';font-weight:800;font-size:24px;letter-spacing:-0.02em;color:var(--text-primary);}
+  #login-gate h2{font-family:'Fredoka';font-weight:600;font-size:24px;letter-spacing:-0.01em;color:var(--text-primary);}
   #login-gate p{font-size:13.5px;color:var(--text-muted);line-height:1.6;max-width:260px;}
-  .btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:none;border-radius:12px;font-size:14.5px;font-weight:700;cursor:pointer;transition:all .2s;width:100%;font-family:'Inter';}
-  .btn-gold{background:var(--gold);color:var(--bg-page);box-shadow:0 4px 20px var(--gold-25);}
-  .btn-gold:hover{background:#b8ed3f;}
-  .btn-gold:disabled{background:var(--gold-dim);color:rgba(26,20,8,.5);cursor:not-allowed;}
-  .btn-outline-wide{background:transparent;border:1px solid var(--divider);color:var(--text-muted);font-size:14px;}
-  .btn-outline-wide:hover{border-color:var(--moss-dim);color:var(--text-primary);}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:var(--border-w) solid var(--ink);border-radius:var(--radius-pill);box-shadow:var(--shadow-hard);font-size:14.5px;font-weight:800;cursor:pointer;transition:transform .12s,box-shadow .12s;width:100%;font-family:'Nunito';}
+  .btn:hover,.btn:active{transform:translate(2px,2px);box-shadow:var(--shadow-press);}
+  .btn-gold{background:var(--gold);color:var(--ink);}
+  .btn-gold:disabled{background:var(--gold-dim);color:rgba(22,59,36,.5);cursor:not-allowed;transform:none;box-shadow:var(--shadow-hard);}
+  .btn-outline-wide{background:var(--bg-surface);border:var(--border-w) solid var(--ink);color:var(--text-primary);font-size:14px;box-shadow:4px 4px 0 var(--ink);}
+  .btn-outline-wide:hover,.btn-outline-wide:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
 
   /* ── App shell ── */
   #app-shell{display:none;}
@@ -64,36 +71,36 @@
 
   /* ── Donate (preview) ── */
   .chip-row{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap;}
-  .chip{padding:9px 14px;border-radius:999px;font-size:12.5px;border:1px solid var(--divider);color:var(--text-muted);font-weight:500;cursor:pointer;}
-  .chip.active{background:var(--moss);border-color:var(--moss);color:var(--bg-page);font-weight:600;}
+  .chip{padding:9px 14px;border-radius:var(--radius-pill);font-size:12.5px;border:var(--border-w-thin) solid var(--ink);color:var(--text-muted);font-weight:700;cursor:pointer;}
+  .chip.active{background:var(--moss);border-color:var(--ink);color:#fff;font-weight:800;}
   .field{margin-bottom:18px;}
   .field-label{font-size:11.5px;font-family:'IBM Plex Mono';color:var(--text-faint);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:7px;display:block;}
-  .field-input{background:var(--bg-surface);border:1px solid var(--divider);border-radius:12px;padding:13px 14px;color:var(--text-primary);font-size:14px;}
-  .batch-select{width:100%;background:var(--bg-surface);border:1px solid var(--divider);border-radius:12px;padding:13px 14px;color:var(--text-primary);font-size:14px;font-family:'Inter';}
-  .batch-select:focus{border-color:var(--gold);}
-  .map-box{height:110px;border-radius:12px;background:radial-gradient(circle at 30% 40%, rgba(139,155,110,0.18), transparent 55%),repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 22px),repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 22px),var(--bg-surface);border:1px solid var(--divider);position:relative;margin-bottom:10px;}
+  .field-input{background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-sm);padding:13px 14px;color:var(--text-primary);font-size:14px;}
+  .batch-select{width:100%;background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-sm);padding:13px 14px;color:var(--text-primary);font-size:14px;font-family:'Nunito';font-weight:700;}
+  .batch-select:focus{border-color:var(--moss);}
+  .map-box{height:110px;border-radius:var(--radius-sm);background:radial-gradient(circle at 30% 40%, rgba(46,125,50,0.14), transparent 55%),repeating-linear-gradient(0deg, rgba(22,59,36,0.04) 0 1px, transparent 1px 22px),repeating-linear-gradient(90deg, rgba(22,59,36,0.04) 0 1px, transparent 1px 22px),var(--bg-surface);border:var(--border-w-thin) solid var(--ink);position:relative;margin-bottom:10px;}
   .map-pin{position:absolute;top:44%;left:38%;width:10px;height:10px;border-radius:50% 50% 50% 0;background:var(--gold);transform:rotate(-45deg);box-shadow:0 0 0 6px var(--gold-15);}
-  .location-name{font-size:13.5px;color:var(--text-primary);font-weight:500;}
+  .location-name{font-size:13.5px;color:var(--text-primary);font-weight:700;}
   .location-addr{font-size:12px;color:var(--text-faint);margin-top:2px;}
-  .estimate-row{display:flex;justify-content:space-between;align-items:center;background:var(--bg-surface);border:1px solid var(--divider);border-radius:12px;padding:14px 16px;margin:22px 0 16px;}
+  .estimate-row{display:flex;justify-content:space-between;align-items:center;background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-sm);padding:14px 16px;margin:22px 0 16px;box-shadow:4px 4px 0 var(--ink);}
   .estimate-label{font-size:12px;color:var(--text-muted);}
-  .estimate-value{font-family:'Inter';font-weight:800;font-size:20px;letter-spacing:-0.02em;color:var(--gold);}
-  .photo-box{height:150px;border-radius:16px;border:1.5px dashed var(--divider);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--text-faint);cursor:pointer;overflow:hidden;}
+  .estimate-value{font-family:'Nunito';font-weight:900;font-size:20px;letter-spacing:-0.01em;color:var(--moss);}
+  .photo-box{height:150px;border-radius:var(--radius-md);border:2px dashed var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--text-faint);cursor:pointer;overflow:hidden;}
   .photo-box span{font-size:12.5px;font-family:'IBM Plex Mono';}
-  .code-card{background:var(--bg-surface);border:1px solid var(--gold-25);border-radius:16px;padding:20px;margin:16px 0 24px;text-align:center;}
+  .code-card{background:var(--bg-surface);border:var(--border-w) solid var(--ink);border-radius:var(--radius-lg);padding:20px;margin:16px 0 24px;text-align:center;box-shadow:var(--shadow-hard);}
   .code-card-label{font-size:11px;font-family:'IBM Plex Mono';letter-spacing:0.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;}
-  .code-value{font-family:'IBM Plex Mono';font-size:32px;font-weight:600;letter-spacing:0.08em;color:var(--gold);margin-bottom:14px;}
+  .code-value{font-family:'IBM Plex Mono';font-size:32px;font-weight:700;letter-spacing:0.08em;color:var(--gold-dim);margin-bottom:14px;}
   .code-steps{text-align:left;font-size:13px;color:var(--text-muted);line-height:1.7;padding-left:20px;margin-top:14px;}
   .code-steps li{margin-bottom:2px;}
   .tx-status{font-size:10px;font-family:'IBM Plex Mono';text-transform:uppercase;letter-spacing:0.04em;padding:2px 8px;border-radius:999px;margin-top:4px;display:inline-block;}
   .tx-status.pending{color:var(--text-faint);border:1px solid var(--divider);}
-  .tx-status.validated{color:var(--gold);border:1px solid var(--gold-25);}
+  .tx-status.validated{color:var(--gold-dim);border:1px solid var(--gold-25);}
   .tx-status.paid{color:var(--moss);border:1px solid var(--moss-25);}
 
   /* ── Track (preview) ── */
-  .item-card{background:var(--bg-surface);border:1px solid var(--divider);border-radius:14px;padding:16px;margin:24px 0 16px;}
+  .item-card{background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-md);padding:16px;margin:24px 0 16px;box-shadow:4px 4px 0 var(--ink);}
   .item-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
-  .item-name{font-size:14px;color:var(--text-primary);font-weight:500;}
+  .item-name{font-size:14px;color:var(--text-primary);font-weight:700;}
   .item-id{font-family:'IBM Plex Mono';font-size:11px;color:var(--text-faint);}
   .chain-row{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono';font-size:11px;color:var(--moss);padding-top:10px;margin-top:10px;border-top:1px solid var(--divider);text-decoration:none;}
   .chain-row.inert{pointer-events:none;}
@@ -105,60 +112,61 @@
   .tl-dot.current{background:var(--gold);box-shadow:0 0 0 3px var(--gold-15);}
   .tl-line{width:1.5px;flex:1;background:var(--divider);margin-top:2px;}
   .tl-content{flex:1;padding-bottom:2px;}
-  .tl-title{font-size:13px;color:var(--text-primary);font-weight:500;}
+  .tl-title{font-size:13px;color:var(--text-primary);font-weight:700;}
   .tl-title.pending{color:var(--text-faint);font-weight:400;}
-  .tl-title.current{color:var(--gold);font-weight:600;}
+  .tl-title.current{color:var(--moss);font-weight:800;}
   .tl-meta{font-size:11px;color:var(--text-faint);font-family:'IBM Plex Mono';margin-top:2px;}
   .tl-meta a{color:var(--moss);text-decoration:none;}
   .tl-meta a:hover{text-decoration:underline;}
 
   /* ── Redeem (preview) ── */
-  .partner-card{background:var(--bg-surface);border:1px solid var(--divider);border-radius:16px;padding:16px;margin-bottom:14px;}
+  .partner-card{background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-md);padding:16px;margin-bottom:14px;box-shadow:4px 4px 0 var(--ink);}
   .partner-top{display:flex;gap:12px;align-items:center;margin-bottom:12px;}
-  .partner-thumb{width:44px;height:44px;border-radius:10px;background:var(--bg-surface-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .partner-name{font-size:14.5px;color:var(--text-primary);font-weight:500;}
+  .partner-thumb{width:44px;height:44px;border-radius:var(--radius-sm);background:var(--bg-surface-2);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .partner-name{font-size:14.5px;color:var(--text-primary);font-weight:700;}
   .partner-meta{font-size:11.5px;color:var(--text-faint);margin-top:2px;display:flex;align-items:center;gap:5px;}
-  .stars{color:var(--gold);letter-spacing:1px;font-size:11px;}
+  .stars{color:var(--gold-dim);letter-spacing:1px;font-size:11px;}
   .redeem-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--divider);}
   .ri-name{font-size:13px;color:var(--text-primary);}
-  .ri-price{font-family:'IBM Plex Mono';font-size:12px;color:var(--gold);}
-  .redeem-btn{background:var(--bg-surface-2);border:1px solid var(--divider);color:var(--text-primary);padding:6px 12px;border-radius:8px;font-size:11.5px;cursor:pointer;}
+  .ri-price{font-family:'IBM Plex Mono';font-size:12px;color:var(--moss);}
+  .redeem-btn{background:var(--gold);border:1.5px solid var(--ink);color:var(--ink);padding:6px 12px;border-radius:var(--radius-pill);font-size:11.5px;font-weight:800;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s;}
+  .redeem-btn:hover,.redeem-btn:active{transform:translate(1.5px,1.5px);box-shadow:1.5px 1.5px 0 var(--ink);}
 
   /* ── Profile ── */
-  .wallet-card{background:var(--bg-surface);border:1px solid var(--divider);border-radius:16px;padding:18px;margin-bottom:22px;}
+  .wallet-card{background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-md);padding:18px;margin-bottom:22px;box-shadow:4px 4px 0 var(--ink);}
   .wallet-addr{font-family:'IBM Plex Mono';font-size:13px;color:var(--text-primary);display:flex;align-items:center;gap:8px;cursor:pointer;}
   .wallet-addr-label{font-size:11px;color:var(--text-faint);font-family:'IBM Plex Mono';letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px;}
   .badge-row{display:flex;gap:10px;margin-bottom:8px;}
-  .badge{flex:1;background:var(--bg-surface);border:1px solid var(--divider);border-radius:14px;padding:14px 8px;text-align:center;opacity:.4;}
+  .badge{flex:1;background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-md);padding:14px 8px;text-align:center;opacity:.4;}
   .badge-label{font-size:10.5px;color:var(--text-muted);margin-top:8px;line-height:1.3;}
 
   /* ── Wallet tab ── */
   .wallet-topbar{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px;margin-bottom:8px;width:100%;max-width:100%;}
-  .icon-btn{background:var(--bg-surface);border:1px solid var(--divider);border-radius:10px;cursor:pointer;padding:8px 10px;display:flex;align-items:center;color:var(--text-muted);font-size:12px;font-weight:600;transition:background .15s;}
-  .icon-btn:hover{background:var(--bg-surface-2);}
-  .icon-btn img{width:20px;height:20px;filter:invert(1) opacity(.7);}
-  .ring-wrap{position:relative;display:flex;flex-direction:column;align-items:center;margin:6px 0 8px;}
+  .icon-btn{background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-md);cursor:pointer;padding:8px 10px;display:flex;align-items:center;color:var(--text-muted);font-size:12px;font-weight:700;transition:transform .12s,box-shadow .12s;box-shadow:3px 3px 0 var(--ink);}
+  .icon-btn:hover,.icon-btn:active{transform:translate(1.5px,1.5px);box-shadow:1.5px 1.5px 0 var(--ink);}
+  .icon-btn img{width:20px;height:20px;opacity:.75;}
+  .ring-wrap{position:relative;display:flex;flex-direction:column;align-items:center;margin:6px 0 8px;background:var(--bg-surface);border:var(--border-w) solid var(--ink);border-radius:var(--radius-xl);box-shadow:var(--shadow-hard-lg);padding:28px 20px;}
   .ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
-  .ring-balance{font-family:'Inter';font-weight:900;font-size:44px;letter-spacing:-0.03em;line-height:1;background:linear-gradient(135deg, var(--moss) 0%, var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .ring-balance{font-family:'Nunito';font-weight:900;font-size:44px;letter-spacing:-0.02em;line-height:1;background:linear-gradient(135deg, var(--moss) 0%, var(--gold-dim) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
   .ring-label{font-family:'IBM Plex Mono';font-size:11px;color:var(--text-muted);letter-spacing:0.06em;margin-top:4px;}
   .ring-addr-row{display:inline-flex;align-items:center;gap:6px;margin-top:14px;cursor:pointer;padding:5px 10px;border-radius:20px;transition:background .15s;}
-  .ring-addr-row:hover{background:var(--bg-surface);}
-  .ring-addr-row.copied .wallet-addr-text{color:var(--gold);opacity:1;}
+  .ring-addr-row:hover{background:var(--bg-surface-2);}
+  .ring-addr-row.copied .wallet-addr-text{color:var(--moss);opacity:1;}
   .wallet-addr-text{font-size:12px;opacity:.5;font-family:'IBM Plex Mono';}
   .wallet-copy-icon{font-size:12px;opacity:.4;}
 
   .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 24px;}
-  .action-btn{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--bg-surface);border:1px solid var(--divider);border-radius:14px;padding:16px 12px;cursor:pointer;transition:background .15s;color:var(--text-primary);font-size:13px;font-weight:700;}
-  .action-btn:hover{background:var(--bg-surface-2);}
+  .action-btn{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-lg);padding:16px 12px;cursor:pointer;transition:transform .12s,box-shadow .12s;color:var(--text-primary);font-size:13px;font-weight:800;box-shadow:4px 4px 0 var(--ink);}
+  .action-btn:hover,.action-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
   .action-btn .action-icon{font-size:22px;}
 
-  .nft-card{background:var(--gold-15);border:1px solid var(--gold-25);border-radius:16px;overflow:hidden;transition:border-color .15s;cursor:pointer;}
-  .nft-card:hover{border-color:var(--gold);}
+  .nft-card{background:var(--gold-15);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-md);overflow:hidden;transition:transform .12s,box-shadow .12s;cursor:pointer;box-shadow:4px 4px 0 var(--ink);}
+  .nft-card:hover,.nft-card:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
   .nft-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--bg-surface);}
   .nft-card-body{padding:10px 12px;}
   .nft-card-name{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .nft-card-sub{font-size:10px;opacity:.4;margin-top:2px;}
-  .nft-badge{display:inline-flex;align-items:center;gap:4px;background:var(--gold-15);border:1px solid var(--gold-25);border-radius:20px;padding:3px 9px;font-size:10px;font-weight:700;color:var(--gold);margin-top:6px;}
+  .nft-badge{display:inline-flex;align-items:center;gap:4px;background:var(--gold-15);border:1px solid var(--gold-25);border-radius:20px;padding:3px 9px;font-size:10px;font-weight:700;color:var(--gold-dim);margin-top:6px;}
 
   .tx-list{display:flex;flex-direction:column;}
   .tx-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--divider);text-decoration:none;color:inherit;transition:opacity .15s;}
@@ -166,51 +174,51 @@
   .tx-item:hover{opacity:.7;}
   .tx-memo{font-size:10px;font-family:'IBM Plex Mono';color:var(--text-faint);background:var(--bg-surface-2);border:1px solid var(--divider);border-radius:4px;padding:2px 6px;display:inline-block;margin-top:2px;}
   .tx-info{flex:1;min-width:0;}
-  .tx-type{font-size:14px;font-weight:600;}
+  .tx-type{font-size:14px;font-weight:800;}
   .tx-time{font-size:11px;color:var(--text-faint);margin-top:2px;}
   .tx-solscan{font-size:10px;color:var(--moss);opacity:.8;margin-top:2px;display:flex;align-items:center;gap:3px;}
   .tx-amount{font-size:22px;font-weight:900;white-space:nowrap;}
-  .tx-amount.pos{color:var(--gold);}
+  .tx-amount.pos{color:var(--moss);}
   .tx-amount.neg{color:var(--rust);}
 
   /* ── Nav ── */
-  .navbar{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;flex-shrink:0;display:flex;justify-content:space-around;align-items:center;padding:10px 2px calc(14px + env(safe-area-inset-bottom, 10px));background:var(--bg-base);border-top:1px solid var(--divider);z-index:50;}
+  .navbar{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;flex-shrink:0;display:flex;justify-content:space-around;align-items:center;padding:10px 2px calc(14px + env(safe-area-inset-bottom, 10px));background:var(--bg-base);border-top:var(--border-w) solid var(--ink);z-index:50;}
   .nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-faint);cursor:pointer;width:48px;padding:4px 0;background:none;border:none;}
-  .nav-item.active{color:var(--gold);}
+  .nav-item.active{color:var(--moss);}
   .nav-item .nav-label{font-size:10px;font-family:'IBM Plex Mono';letter-spacing:0.02em;}
 
   /* ── Sheets / modal ── */
-  .sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;display:none;align-items:flex-end;}
+  .sheet-bg{position:fixed;inset:0;background:rgba(22,59,36,.55);z-index:100;display:none;align-items:flex-end;}
   .sheet-bg.open{display:flex;}
-  .sheet{background:var(--bg-base);border:1px solid var(--divider);border-radius:24px 24px 0 0;padding:24px 20px 40px;width:100%;max-width:480px;margin:0 auto;max-height:90vh;overflow-y:auto;position:relative;}
+  .sheet{background:var(--bg-base);border:var(--border-w) solid var(--ink);border-bottom:none;border-radius:var(--radius-xl) var(--radius-xl) 0 0;padding:24px 20px 40px;width:100%;max-width:480px;margin:0 auto;max-height:90vh;overflow-y:auto;position:relative;}
   .sheet-close{position:absolute;top:20px;right:20px;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--rust-15);border:1.5px solid var(--rust);color:var(--rust);font-size:18px;font-weight:700;cursor:pointer;line-height:1;transition:background .15s;}
-  .sheet-close:hover{background:rgba(181,96,60,.3);}
-  .sheet h2,.sheet h3{font-family:'Inter';font-weight:800;font-size:18px;letter-spacing:-0.02em;margin-bottom:20px;color:var(--text-primary);}
-  .qr-box{background:#fff;border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
-  .addr-box{background:var(--bg-surface);border:1px solid var(--divider);border-radius:12px;padding:12px 14px;font-family:'IBM Plex Mono';font-size:12px;word-break:break-all;opacity:.85;margin-bottom:12px;}
-  .copy-btn{background:var(--bg-surface);border:1px solid var(--divider);border-radius:10px;color:var(--text-primary);font-size:13px;font-weight:600;padding:10px;width:100%;cursor:pointer;transition:background .15s;}
-  .copy-btn:hover{background:var(--bg-surface-2);}
-  label{display:block;font-size:11.5px;font-weight:600;color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-family:'IBM Plex Mono';}
-  input{width:100%;background:var(--bg-surface);border:1px solid var(--divider);border-radius:12px;color:var(--text-primary);font-size:15px;padding:12px 14px;outline:none;transition:border .2s;margin-bottom:16px;font-family:'Inter';}
+  .sheet-close:hover{background:rgba(229,88,110,.25);}
+  .sheet h2,.sheet h3{font-family:'Fredoka';font-weight:600;font-size:18px;letter-spacing:-0.01em;margin-bottom:20px;color:var(--text-primary);}
+  .qr-box{background:#fff;border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-md);padding:16px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .addr-box{background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-sm);padding:12px 14px;font-family:'IBM Plex Mono';font-size:12px;word-break:break-all;opacity:.85;margin-bottom:12px;}
+  .copy-btn{background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-pill);color:var(--text-primary);font-size:13px;font-weight:800;padding:10px;width:100%;cursor:pointer;transition:transform .12s,box-shadow .12s;box-shadow:3px 3px 0 var(--ink);}
+  .copy-btn:hover,.copy-btn:active{transform:translate(1.5px,1.5px);box-shadow:1.5px 1.5px 0 var(--ink);}
+  label{display:block;font-size:11.5px;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-family:'IBM Plex Mono';}
+  input{width:100%;background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-sm);color:var(--text-primary);font-size:15px;padding:12px 14px;outline:none;transition:border .2s;margin-bottom:16px;font-family:'Nunito';font-weight:700;}
   input::placeholder{color:var(--text-faint);}
-  input:focus{border-color:var(--gold);}
-  .scan-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--bg-surface);border:1px solid var(--divider);border-radius:12px;color:var(--text-muted);font-size:14px;font-weight:600;padding:11px;width:100%;cursor:pointer;margin-bottom:16px;}
-  .scan-btn:hover{background:var(--bg-surface-2);}
-  #scanner-wrap{border-radius:14px;overflow:hidden;margin-bottom:16px;display:none;}
+  input:focus{border-color:var(--moss);}
+  .scan-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-pill);color:var(--text-muted);font-size:14px;font-weight:800;padding:11px;width:100%;cursor:pointer;margin-bottom:16px;transition:transform .12s,box-shadow .12s;box-shadow:3px 3px 0 var(--ink);}
+  .scan-btn:hover,.scan-btn:active{transform:translate(1.5px,1.5px);box-shadow:1.5px 1.5px 0 var(--ink);}
+  #scanner-wrap{border-radius:var(--radius-md);overflow:hidden;margin-bottom:16px;display:none;}
   #scanner-wrap video{width:100% !important;}
   #html5-qrcode-button-camera-permission,#html5-qrcode-button-camera-stop,#html5-qrcode-anchor-scan-type-change{display:none !important;}
-  .toast{position:fixed;bottom:-80px;left:50%;transform:translateX(-50%);background:var(--moss);color:var(--bg-page);font-size:14px;font-weight:700;padding:12px 24px;border-radius:100px;transition:bottom .3s;z-index:200;white-space:nowrap;}
+  .toast{position:fixed;bottom:-80px;left:50%;transform:translateX(-50%);background:var(--moss);color:var(--bg-page);font-size:14px;font-weight:800;padding:12px 24px;border-radius:100px;border:2px solid var(--ink);transition:bottom .3s;z-index:200;white-space:nowrap;}
   .toast.show{bottom:96px;}
   .toast.error{background:var(--rust);color:#fff;}
-  .status-row{display:flex;gap:8px;align-items:center;font-size:13px;padding:10px 14px;border-radius:10px;margin-bottom:14px;}
-  .status-row.info{background:var(--gold-15);color:var(--gold);}
+  .status-row{display:flex;gap:8px;align-items:center;font-size:13px;padding:10px 14px;border-radius:var(--radius-sm);margin-bottom:14px;font-weight:700;}
+  .status-row.info{background:var(--gold-15);color:var(--gold-dim);}
   .status-row.ok{background:var(--moss-15);color:var(--moss);}
   .status-row.err{background:var(--rust-15);color:var(--rust);}
   .wallet-list{display:flex;flex-direction:column;gap:10px;}
-  .wallet-option{display:flex;align-items:center;gap:14px;background:var(--bg-surface);border:1px solid var(--divider);border-radius:16px;padding:16px 18px;cursor:pointer;color:var(--text-primary);font-size:15px;font-weight:600;text-align:left;width:100%;transition:background .15s;}
-  .wallet-option:hover{background:var(--bg-surface-2);}
+  .wallet-option{display:flex;align-items:center;gap:14px;background:var(--bg-surface);border:var(--border-w-thin) solid var(--ink);border-radius:var(--radius-md);padding:16px 18px;cursor:pointer;color:var(--text-primary);font-size:15px;font-weight:700;text-align:left;width:100%;transition:transform .12s,box-shadow .12s;box-shadow:4px 4px 0 var(--ink);}
+  .wallet-option:hover,.wallet-option:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
   .wallet-option.not-installed{opacity:.5;}
-  .wallet-logo{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;overflow:hidden;}
+  .wallet-logo{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;overflow:hidden;}
   .wallet-logo img{width:100%;height:100%;object-fit:cover;}
   .wallet-badge{margin-left:auto;background:var(--bg-surface-2);border-radius:20px;font-size:11px;font-weight:700;padding:4px 10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;}
   .wallet-badge.installed{background:var(--moss-15);color:var(--moss);}
@@ -220,7 +228,7 @@
 
 <!-- ══ LOGIN GATE — must complete before the app is reachable ══ -->
 <div id="login-gate">
-  <img src="/tuc-logo-white.png" alt="The Upcycle Collective" style="height:168px;width:auto;" />
+  <img src="/tuc-logo-main.png" alt="The Upcycle Collective" style="height:64px;width:auto;" />
   <p>Log in to view your wTUC balance, donate, track loops, redeem rewards, and see your full on-chain activity.</p>
   <button class="btn btn-gold" onclick="connectWithEmail()" style="max-width:260px;margin-top:6px;">Continue with Email</button>
   <button class="btn btn-outline-wide" onclick="openWalletPicker()" style="max-width:260px;">Connect Wallet</button>
@@ -261,7 +269,7 @@
           <div class="field" style="margin-top:18px;text-align:left;">
             <span class="field-label">Photo of your sealed bag</span>
             <div class="photo-box" id="donate-photo-box" onclick="openPhotoWarning()">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8a8a78" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
               <span>Take or upload a photo — make sure the code is visible</span>
             </div>
             <div id="donate-photo-status" style="font-size:12px;color:var(--text-muted);margin-top:8px;"></div>
@@ -314,7 +322,7 @@
         <div class="subtext">Spend at partner stores across Kuching. This marketplace isn't live yet — redemptions currently happen at event stations.</div>
         <div class="partner-card">
           <div class="partner-top">
-            <div class="partner-thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.6"><path d="M4 9l1-5h14l1 5"/><path d="M4 9h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9z"/><path d="M9 13a3 3 0 0 0 6 0"/></svg></div>
+            <div class="partner-thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="1.6"><path d="M4 9l1-5h14l1 5"/><path d="M4 9h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9z"/><path d="M9 13a3 3 0 0 0 6 0"/></svg></div>
             <div><div class="partner-name">Kertas &amp; Co.</div><div class="partner-meta"><span class="stars">★★★★★</span> 4.9 · Secondhand · 0.8 km</div></div>
           </div>
           <div class="redeem-item"><div class="ri-name">Upcycled tote bag</div><div style="display:flex;align-items:center;gap:10px;"><span class="ri-price">8 tokens</span><button class="redeem-btn" onclick="previewToast()">Redeem</button></div></div>
@@ -322,7 +330,7 @@
         </div>
         <div class="partner-card">
           <div class="partner-top">
-            <div class="partner-thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.6"><path d="M14.7 6.3a1 1 0 0 1 1.4 0l1.6 1.6a1 1 0 0 1 0 1.4L8.4 18.6 4 20l1.4-4.4L14.7 6.3z"/></svg></div>
+            <div class="partner-thumb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="1.6"><path d="M14.7 6.3a1 1 0 0 1 1.4 0l1.6 1.6a1 1 0 0 1 0 1.4L8.4 18.6 4 20l1.4-4.4L14.7 6.3z"/></svg></div>
             <div><div class="partner-name">Simpang Repair Co.</div><div class="partner-meta"><span class="stars">★★★★☆</span> 4.6 · Repair · 1.4 km</div></div>
           </div>
           <div class="redeem-item"><div class="ri-name">Zipper repair</div><div style="display:flex;align-items:center;gap:10px;"><span class="ri-price">5 tokens</span><button class="redeem-btn" onclick="previewToast()">Redeem</button></div></div>
@@ -352,15 +360,15 @@
           <div class="wallet-addr-label">Wallet address</div>
           <div class="wallet-addr" id="profile-addr-row" onclick="copyAddressInline()">
             <span id="profile-addr">—</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a8a78" stroke-width="1.8"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.8"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
           </div>
         </div>
 
         <div class="section-label">Badges</div>
         <div class="badge-row">
-          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="1.6" style="margin:0 auto;"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.9 3 9.3l6.4-.7L12 2z"/></svg><div class="badge-label">First<br>donation</div></div>
-          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="1.6" style="margin:0 auto;"><path d="M4 12a8 8 0 0 1 14-5"/><path d="M18 3v5h-5"/><path d="M20 12a8 8 0 0 1-14 5"/><path d="M6 21v-5h5"/></svg><div class="badge-label">Loop<br>closer</div></div>
-          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8a8a78" stroke-width="1.6" style="margin:0 auto;"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><div class="badge-label">Repeat<br>giver</div></div>
+          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dim)" stroke-width="1.6" style="margin:0 auto;"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.9 3 9.3l6.4-.7L12 2z"/></svg><div class="badge-label">First<br>donation</div></div>
+          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dim)" stroke-width="1.6" style="margin:0 auto;"><path d="M4 12a8 8 0 0 1 14-5"/><path d="M18 3v5h-5"/><path d="M20 12a8 8 0 0 1-14 5"/><path d="M6 21v-5h5"/></svg><div class="badge-label">Loop<br>closer</div></div>
+          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.6" style="margin:0 auto;"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><div class="badge-label">Repeat<br>giver</div></div>
         </div>
         <div class="subtext" style="margin-top:-4px;">Badges are a preview — coming soon.</div>
 
@@ -377,7 +385,7 @@
           <input id="validate-code-input" type="text" maxlength="10" placeholder="e.g. 7F3K9Q" autocapitalize="characters" style="text-transform:uppercase;">
           <button class="btn btn-outline-wide" id="lookup-submit-btn" style="margin-top:8px;" onclick="submitLookupDonation()">Look up code</button>
 
-          <div id="lookup-result" style="display:none;background:var(--bg-surface);border:1px solid var(--divider);border-radius:12px;padding:14px 16px;margin-top:14px;">
+          <div id="lookup-result" style="display:none;background:var(--bg-surface);border:2px solid var(--ink);border-radius:16px;box-shadow:4px 4px 0 var(--ink);padding:14px 16px;margin-top:14px;">
             <div style="display:flex;gap:12px;align-items:flex-start;">
               <img id="lookup-photo" src="" alt="Donation photo" style="width:64px;height:64px;border-radius:8px;object-fit:cover;flex-shrink:0;display:none;">
               <div style="font-size:13px;line-height:1.7;">
@@ -398,7 +406,7 @@
           <label style="display:block;">Photo of the weight scale</label>
           <input type="file" id="scale-photo-input" accept="image/*" capture="environment" style="display:none" onchange="handleScalePhoto(event)">
           <div class="photo-box" id="scale-photo-box" onclick="document.getElementById('scale-photo-input').click()">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8a8a78" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
             <span>Take a photo showing the scale's reading</span>
           </div>
           <div id="scale-photo-status" style="font-size:12px;color:var(--text-muted);margin-top:8px;margin-bottom:16px;"></div>
@@ -413,7 +421,7 @@
           <input id="airdrop-code-input" type="text" maxlength="10" placeholder="e.g. 7F3K9Q" autocapitalize="characters" style="text-transform:uppercase;">
           <button class="btn btn-outline-wide" id="airdrop-lookup-btn" style="margin-top:8px;" onclick="submitAirdropLookup()">Look up code</button>
 
-          <div id="airdrop-lookup-result" style="display:none;background:var(--bg-surface);border:1px solid var(--divider);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:13px;line-height:1.7;">
+          <div id="airdrop-lookup-result" style="display:none;background:var(--bg-surface);border:2px solid var(--ink);border-radius:16px;box-shadow:4px 4px 0 var(--ink);padding:14px 16px;margin-top:14px;font-size:13px;line-height:1.7;">
             <div><strong>Wallet:</strong> <span id="airdrop-wallet"></span></div>
             <div><strong>Status:</strong> <span id="airdrop-status-val"></span></div>
             <div><strong>Tokens owed (estimate):</strong> <span id="airdrop-tokens-owed"></span></div>
@@ -442,7 +450,7 @@
         <div class="ring-wrap">
           <svg width="220" height="220" viewBox="0 0 200 200">
             <circle cx="100" cy="100" r="80" fill="none" stroke="var(--bg-surface-2)" stroke-width="10"/>
-            <circle cx="100" cy="100" r="80" fill="none" stroke="var(--gold)" stroke-width="10" stroke-linecap="round" stroke-dasharray="502.4 502.4" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="var(--gold-dim)" stroke-width="10" stroke-linecap="round" stroke-dasharray="502.4 502.4" transform="rotate(-90 100 100)"/>
           </svg>
           <div class="ring-center">
             <div class="ring-balance" id="balance">—</div>
@@ -457,8 +465,8 @@
         </div>
 
         <div class="actions">
-          <button class="action-btn" onclick="openSend()"><span class="action-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></span>Send</button>
-          <button class="action-btn" onclick="openReceive()"><span class="action-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z"/><path d="M14 21h.01"/><path d="M21 14h.01"/><path d="M21 21h.01"/><path d="M17.5 17.5h.01"/></svg></span>Receive</button>
+          <button class="action-btn" onclick="openSend()"><span class="action-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></span>Send</button>
+          <button class="action-btn" onclick="openReceive()"><span class="action-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z"/><path d="M14 21h.01"/><path d="M21 14h.01"/><path d="M21 21h.01"/><path d="M17.5 17.5h.01"/></svg></span>Receive</button>
         </div>
 
         <div id="nft-section" style="margin-bottom:24px;">
@@ -757,7 +765,7 @@ async function generateDonateCode() {
     document.getElementById('donate-code-value').textContent = data.code;
     document.getElementById('donate-photo-status').textContent = '';
     document.getElementById('donate-photo-box').innerHTML =
-      `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8a8a78" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg><span>Take or upload a photo — make sure the code is visible</span>`;
+      `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg><span>Take or upload a photo — make sure the code is visible</span>`;
     document.getElementById('donate-code-card').style.display = 'block';
     document.getElementById('donate-code-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     toast('Code generated — now add a photo of your sealed bag.');
@@ -1397,12 +1405,12 @@ function openNFTDetail(mint) {
       <div class="section-title" style="margin-bottom:4px;">Minted</div>
       <div id="nft-detail-time" style="font-size:14px;color:var(--text-primary);">Loading…</div>
     </div>
-    <div style="background:var(--bg-surface);border:1px solid var(--divider);border-radius:14px;padding:14px 16px;margin-bottom:16px;">
+    <div style="background:var(--bg-surface);border:2px solid var(--ink);border-radius:16px;box-shadow:4px 4px 0 var(--ink);padding:14px 16px;margin-bottom:16px;">
       <div class="section-title" style="margin-bottom:4px;">Mint Address</div>
       <div style="font-size:12px;font-family:'IBM Plex Mono';color:var(--text-muted);word-break:break-all;">${mint}</div>
     </div>
     <a href="https://solscan.io/token/${mint}" target="_blank" rel="noopener"
-       style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:var(--gold);color:var(--bg-page);font-size:15px;font-weight:700;border-radius:14px;text-decoration:none;">
+       style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:var(--gold);color:var(--ink);font-size:15px;font-weight:800;border:2px solid var(--ink);border-radius:100px;box-shadow:4px 4px 0 var(--ink);text-decoration:none;">
       ↗ View on Solscan
     </a>`;
   document.getElementById('nft-detail-sheet').classList.add('open');
@@ -2008,7 +2016,7 @@ async function submitLookupDonation() {
     // Reset the scale-photo box for this (possibly new) code
     document.getElementById('scale-photo-status').textContent = data.scalePhotoLink ? '✅ Scale photo already on file' : '';
     document.getElementById('scale-photo-box').innerHTML =
-      `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8a8a78" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg><span>Take a photo showing the scale's reading</span>`;
+      `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg><span>Take a photo showing the scale's reading</span>`;
   } catch (e) {
     setValidateStatus('err', '❌ ' + (e.message || 'Something went wrong'));
   } finally {
