@@ -167,5 +167,18 @@
     el.textContent = text;
   }
 </script>
+
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href="website.html"]');
+    if (!a) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.metaKey || e.ctrlKey) { window.open('website.html', '_blank'); return; }
+    window.location.href = 'website.html';
+  }, true);
+})();
+</script>
 </body>
 </html>
