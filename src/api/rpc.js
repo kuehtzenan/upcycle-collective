@@ -20,7 +20,13 @@ async function proxyJsonRpc(req, res) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body),
     });
-    const data = await r.json();
+    // Rate limits and upstream errors (e.g. a 429) can come back as plain
+    // text ("Too Many Requests") rather than JSON — parsing that unconditionally
+    // threw and masked the real status behind a generic 502, which broke the
+    // client's status-based retry/backoff. Pass the real status through instead.
+    const text = await r.text();
+    let data;
+    try { data = JSON.parse(text); } catch { data = { error: text || `Upstream HTTP ${r.status}` }; }
     res.status(r.status).json(data);
   } catch (e) {
     jsonErr(res, 502, `RPC proxy failed: ${e.message}`);

@@ -31550,7 +31550,13 @@ async function proxyJsonRpc(req, res) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req.body)
     });
-    const data = await r.json();
+    const text = await r.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = { error: text || `Upstream HTTP ${r.status}` };
+    }
     res.status(r.status).json(data);
   } catch (e) {
     jsonErr(res, 502, `RPC proxy failed: ${e.message}`);
