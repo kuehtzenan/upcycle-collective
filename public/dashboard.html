@@ -317,9 +317,7 @@ tbody td { padding: 12px 16px; font-size: 13px; vertical-align: middle; }
    ═══════════════════════════════════════════ */
 const MINT      = 'AQbA6U1aHJen4Y85Skn8GYJgYcqKWT6atBaH8JQX87yz'; // wTUC
 const ORGANISER = 'CGDLbYHVnoMpw2CCbKMMomm6U3ByVZRFqKuGZfpdsrBK';
-const API_KEY = 'a353da56-f27a-4a7a-9091-bdc6f8d66f27';
-const RPC_URL = `https://mainnet.helius-rpc.com/?api-key=${API_KEY}`;
-const HELIUS  = `https://api.helius.xyz/v0`;
+const RPC_URL = '/api/rpc';
 
 const MEMO_PROGRAMS = new Set([
   'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr',  // SPL Memo v2 (current)
@@ -383,7 +381,7 @@ function decodeMemoData(data) {
    HELIUS ENHANCED TRANSACTIONS API
    ═══════════════════════════════════════════ */
 async function fetchPage(before = null) {
-  let url = `${HELIUS}/addresses/${MINT}/transactions?api-key=${API_KEY}&limit=100`;
+  let url = `/api/helius-tx?address=${MINT}&limit=100`;
   if (before) url += `&before=${before}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
