@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { TOKEN_2022_PROGRAM_ID, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import {
@@ -8,7 +9,7 @@ import BN from 'bn.js';
 import bs58 from 'bs58';
 import Decimal from 'decimal.js';
 
-const RPC_URL    = 'https://mainnet.helius-rpc.com/?api-key=a353da56-f27a-4a7a-9091-bdc6f8d66f27';
+const RPC_URL    = process.env.HELIUS_RPC || 'https://api.devnet.solana.com';
 const TUC_MINT   = '2hgWyBDWgw4xesu8NpwTAhHgy2gnAo5iBhsBNSasngRj';
 const USDC_MINT  = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 

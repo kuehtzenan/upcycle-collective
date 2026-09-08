@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import {
   Connection,
   Keypair,
@@ -22,7 +23,7 @@ import bs58 from 'bs58';
 const NETWORK = 'mainnet-beta';
 const RPC_URL =
   NETWORK === 'mainnet-beta'
-    ? 'https://mainnet.helius-rpc.com/?api-key=a353da56-f27a-4a7a-9091-bdc6f8d66f27'
+    ? (process.env.HELIUS_RPC || 'https://api.devnet.solana.com')
     : 'https://api.devnet.solana.com';
 
 const TOKEN_NAME   = 'The Upcycle Collective';

@@ -1,10 +1,11 @@
+import 'dotenv/config';
 import { Connection, Keypair, Transaction, sendAndConfirmTransaction, SystemProgram } from '@solana/web3.js';
 import { createUpdateFieldInstruction } from '@solana/spl-token-metadata';
 import { TOKEN_2022_PROGRAM_ID } from '@solana/spl-token';
 import { PublicKey } from '@solana/web3.js';
 import bs58 from 'bs58';
 
-const RPC_URL  = 'https://mainnet.helius-rpc.com/?api-key=a353da56-f27a-4a7a-9091-bdc6f8d66f27';
+const RPC_URL  = process.env.HELIUS_RPC || 'https://api.devnet.solana.com';
 const MINT     = '2hgWyBDWgw4xesu8NpwTAhHgy2gnAo5iBhsBNSasngRj';
 const NEW_URI  = 'https://upcycle-collective.vercel.app/metadata.json';
 
