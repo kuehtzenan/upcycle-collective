@@ -1230,24 +1230,15 @@ async function rpc(method, params) {
   return data.result;
 }
 
-// Standard JSON-RPC batching — one HTTP round-trip for a chunk of calls
-// instead of one round-trip per call. Chunked to 25 and sent sequentially
-// (not in parallel) because Helius rate-limits by processing load within a
-// batch, not just request count — a single batch of 60 gets a flat 429, and
-// so does firing multiple chunks at once; 25 sequential is the largest size
-// that's held up reliably in testing.
-const RPC_BATCH_CHUNK = 25;
+// Fires calls as parallel individual requests rather than one JSON-RPC
+// batch-array request. Helius processes a batch array slowly/serially on
+// its end (measured ~5.4s for 25 getTransaction calls sent as one array,
+// on both the free and Developer plans) while the same 25 — or even 60 —
+// calls sent concurrently as separate requests complete in ~1s with no
+// errors on the Developer plan. Each call still goes through fetchRpcRaw's
+// own timeout/retry, so one slow/rate-limited call can't sink the batch.
 async function rpcBatch(calls) {
-  const out = [];
-  for (let i = 0; i < calls.length; i += RPC_BATCH_CHUNK) {
-    const chunk = calls.slice(i, i + RPC_BATCH_CHUNK);
-    const body = chunk.map((c, j) => ({ jsonrpc: '2.0', id: j, method: c.method, params: c.params }));
-    const results = await fetchRpcRaw(body);
-    if (!Array.isArray(results)) throw new Error('RPC batch returned an unexpected response');
-    const byId = new Map(results.map(x => [x.id, x.result]));
-    for (let j = 0; j < chunk.length; j++) out.push(byId.get(j));
-  }
-  return out;
+  return Promise.all(calls.map(c => fetchRpcRaw({ jsonrpc: '2.0', id: 1, method: c.method, params: c.params }).then(r => r.result)));
 }
 
 /* ── Wallet Picker ── */
