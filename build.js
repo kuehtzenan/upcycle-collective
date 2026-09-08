@@ -15,7 +15,6 @@ build({
     'src/api/pay/creative.js',
     'src/api/tickets.js',
     'src/api/rpc.js',
-    'src/api/helius-tx.js',
   ],
   bundle:   true,
   platform: 'node',

@@ -11620,16 +11620,16 @@ function v35_default(name, version3, hashfunc) {
   } catch (err) {
   }
   generateUUID.DNS = DNS;
-  generateUUID.URL = URL;
+  generateUUID.URL = URL2;
   return generateUUID;
 }
-var DNS, URL;
+var DNS, URL2;
 var init_v35 = __esm({
   "node_modules/uuid/dist/esm-node/v35.js"() {
     init_stringify();
     init_parse();
     DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
-    URL = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
+    URL2 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
   }
 });
 
@@ -13493,8 +13493,8 @@ var require_URL = __commonJS({
     var utils = require_utils3();
     var Impl = require_URL_impl();
     var impl = utils.implSymbol;
-    function URL3(url) {
-      if (!this || this[impl] || !(this instanceof URL3)) {
+    function URL4(url) {
+      if (!this || this[impl] || !(this instanceof URL4)) {
         throw new TypeError("Failed to construct 'URL': Please use the 'new' operator, this DOM object constructor cannot be called as a function.");
       }
       if (arguments.length < 1) {
@@ -13510,7 +13510,7 @@ var require_URL = __commonJS({
       }
       module2.exports.setup(this, args);
     }
-    URL3.prototype.toJSON = function toJSON() {
+    URL4.prototype.toJSON = function toJSON() {
       if (!this || !module2.exports.is(this)) {
         throw new TypeError("Illegal invocation");
       }
@@ -13520,7 +13520,7 @@ var require_URL = __commonJS({
       }
       return this[impl].toJSON.apply(this[impl], args);
     };
-    Object.defineProperty(URL3.prototype, "href", {
+    Object.defineProperty(URL4.prototype, "href", {
       get() {
         return this[impl].href;
       },
@@ -13531,20 +13531,20 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    URL3.prototype.toString = function() {
+    URL4.prototype.toString = function() {
       if (!this || !module2.exports.is(this)) {
         throw new TypeError("Illegal invocation");
       }
       return this.href;
     };
-    Object.defineProperty(URL3.prototype, "origin", {
+    Object.defineProperty(URL4.prototype, "origin", {
       get() {
         return this[impl].origin;
       },
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL3.prototype, "protocol", {
+    Object.defineProperty(URL4.prototype, "protocol", {
       get() {
         return this[impl].protocol;
       },
@@ -13555,7 +13555,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL3.prototype, "username", {
+    Object.defineProperty(URL4.prototype, "username", {
       get() {
         return this[impl].username;
       },
@@ -13566,7 +13566,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL3.prototype, "password", {
+    Object.defineProperty(URL4.prototype, "password", {
       get() {
         return this[impl].password;
       },
@@ -13577,7 +13577,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL3.prototype, "host", {
+    Object.defineProperty(URL4.prototype, "host", {
       get() {
         return this[impl].host;
       },
@@ -13588,7 +13588,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL3.prototype, "hostname", {
+    Object.defineProperty(URL4.prototype, "hostname", {
       get() {
         return this[impl].hostname;
       },
@@ -13599,7 +13599,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL3.prototype, "port", {
+    Object.defineProperty(URL4.prototype, "port", {
       get() {
         return this[impl].port;
       },
@@ -13610,7 +13610,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL3.prototype, "pathname", {
+    Object.defineProperty(URL4.prototype, "pathname", {
       get() {
         return this[impl].pathname;
       },
@@ -13621,7 +13621,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL3.prototype, "search", {
+    Object.defineProperty(URL4.prototype, "search", {
       get() {
         return this[impl].search;
       },
@@ -13632,7 +13632,7 @@ var require_URL = __commonJS({
       enumerable: true,
       configurable: true
     });
-    Object.defineProperty(URL3.prototype, "hash", {
+    Object.defineProperty(URL4.prototype, "hash", {
       get() {
         return this[impl].hash;
       },
@@ -13648,7 +13648,7 @@ var require_URL = __commonJS({
         return !!obj && obj[impl] instanceof Impl.implementation;
       },
       create(constructorArgs, privateData) {
-        let obj = Object.create(URL3.prototype);
+        let obj = Object.create(URL4.prototype);
         this.setup(obj, constructorArgs, privateData);
         return obj;
       },
@@ -13658,10 +13658,10 @@ var require_URL = __commonJS({
         obj[impl] = new Impl.implementation(constructorArgs, privateData);
         obj[impl][utils.wrapperSymbol] = obj;
       },
-      interface: URL3,
+      interface: URL4,
       expose: {
-        Window: { URL: URL3 },
-        Worker: { URL: URL3 }
+        Window: { URL: URL4 },
+        Worker: { URL: URL4 }
       }
     };
   }
@@ -14508,12 +14508,12 @@ var require_lib3 = __commonJS({
       configurable: true
     });
     var INTERNALS$2 = /* @__PURE__ */ Symbol("Request internals");
-    var URL3 = Url.URL || whatwgUrl.URL;
+    var URL4 = Url.URL || whatwgUrl.URL;
     var parse_url = Url.parse;
     var format_url = Url.format;
     function parseURL(urlStr) {
       if (/^[a-zA-Z][a-zA-Z\d+\-.]*:/.exec(urlStr)) {
-        urlStr = new URL3(urlStr).toString();
+        urlStr = new URL4(urlStr).toString();
       }
       return parse_url(urlStr);
     }
@@ -17433,7 +17433,7 @@ var require_websocket = __commonJS({
     var tls = require("tls");
     var { randomBytes, createHash: createHash3 } = require("crypto");
     var { Duplex, Readable } = require("stream");
-    var { URL: URL3 } = require("url");
+    var { URL: URL4 } = require("url");
     var PerMessageDeflate = require_permessage_deflate();
     var Receiver = require_receiver();
     var Sender = require_sender();
@@ -17934,11 +17934,11 @@ var require_websocket = __commonJS({
         );
       }
       let parsedUrl;
-      if (address instanceof URL3) {
+      if (address instanceof URL4) {
         parsedUrl = address;
       } else {
         try {
-          parsedUrl = new URL3(address);
+          parsedUrl = new URL4(address);
         } catch {
           throw new SyntaxError(`Invalid URL: ${address}`);
         }
@@ -18075,7 +18075,7 @@ var require_websocket = __commonJS({
           req.abort();
           let addr;
           try {
-            addr = new URL3(location, address);
+            addr = new URL4(location, address);
           } catch (e) {
             const err = new SyntaxError(`Invalid URL: ${location}`);
             emitErrorAndClose(websocket, err);
@@ -19290,13 +19290,13 @@ function v35(version3, hash, value, namespace, buf, offset) {
   }
   return unsafeStringify(bytes);
 }
-var DNS2, URL2;
+var DNS2, URL3;
 var init_v352 = __esm({
   "node_modules/rpc-websockets/node_modules/uuid/dist-node/v35.js"() {
     init_parse2();
     init_stringify2();
     DNS2 = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
-    URL2 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
+    URL3 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
   }
 });
 
@@ -19310,7 +19310,7 @@ var init_v32 = __esm({
     init_md52();
     init_v352();
     v32.DNS = DNS2;
-    v32.URL = URL2;
+    v32.URL = URL3;
     v3_default2 = v32;
   }
 });
@@ -19378,7 +19378,7 @@ var init_v52 = __esm({
     init_sha12();
     init_v352();
     v52.DNS = DNS2;
-    v52.URL = URL2;
+    v52.URL = URL3;
     v5_default2 = v52;
   }
 });
@@ -31538,7 +31538,11 @@ var require_utils4 = __commonJS({
 // src/api/rpc.js
 var { jsonErr } = require_utils4();
 module.exports = async function handler(req, res) {
-  if (req.method !== "POST") return jsonErr(res, 405, "POST only");
+  if (req.method === "POST") return proxyJsonRpc(req, res);
+  if (req.method === "GET") return proxyEnhancedTx(req, res);
+  return jsonErr(res, 405, "GET or POST only");
+};
+async function proxyJsonRpc(req, res) {
   const rpc = process.env.HELIUS_RPC || "https://api.devnet.solana.com";
   try {
     const r = await fetch(rpc, {
@@ -31551,7 +31555,22 @@ module.exports = async function handler(req, res) {
   } catch (e) {
     jsonErr(res, 502, `RPC proxy failed: ${e.message}`);
   }
-};
+}
+async function proxyEnhancedTx(req, res) {
+  const apiKey = process.env.HELIUS_API_KEY || new URL(process.env.HELIUS_RPC || "", "https://x").searchParams.get("api-key");
+  if (!apiKey) return jsonErr(res, 500, "HELIUS_API_KEY (or HELIUS_RPC with ?api-key=) not set");
+  const { address, limit = "100", before } = req.query || {};
+  if (!address) return jsonErr(res, 400, "address query param required");
+  let url = `https://api.helius.xyz/v0/addresses/${address}/transactions?api-key=${apiKey}&limit=${limit}`;
+  if (before) url += `&before=${before}`;
+  try {
+    const r = await fetch(url);
+    const data = await r.json();
+    res.status(r.status).json(data);
+  } catch (e) {
+    jsonErr(res, 502, `Helius proxy failed: ${e.message}`);
+  }
+}
 /*! Bundled license information:
 
 @noble/hashes/utils.js:

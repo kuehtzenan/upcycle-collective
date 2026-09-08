@@ -381,7 +381,7 @@ function decodeMemoData(data) {
    HELIUS ENHANCED TRANSACTIONS API
    ═══════════════════════════════════════════ */
 async function fetchPage(before = null) {
-  let url = `/api/helius-tx?address=${MINT}&limit=100`;
+  let url = `/api/rpc?address=${MINT}&limit=100`;
   if (before) url += `&before=${before}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
